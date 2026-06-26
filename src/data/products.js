@@ -1,12 +1,10 @@
-import ExampleImg from "../assets/example.jpg";
-
 export const products = [
     {
         id: 1,
         name: "Gel",
         price: 25000,
         category: "Definición",
-        image: ExampleImg,
+        image: null,
         description: "Fijación extrema sin resecar tus rizos. Ideal para estilos duraderos."
     },
     {
@@ -14,7 +12,7 @@ export const products = [
         name: "Peine Definidor",
         price: 15000,
         category: "Accesorios",
-        image: ExampleImg,
+        image: null,
         description: "Separa y define cada rizo con precisión y sin tirones."
     },
     {
@@ -22,7 +20,7 @@ export const products = [
         name: "Crema de Peinar",
         price: 35000,
         category: "Hidratación",
-        image: ExampleImg,
+        image: null,
         description: "Nutrición profunda para cabellos sedientos. Suavidad y brillo garantizados."
     },
     {
@@ -30,7 +28,7 @@ export const products = [
         name: "Gorro de Satín",
         price: 20000,
         category: "Accesorios",
-        image: ExampleImg,
+        image: null,
         description: "Protege tus rizos mientras duermes. Adiós al frizz y al quiebre."
     },
     {
@@ -38,7 +36,7 @@ export const products = [
         name: "Moña de Satín",
         price: 8000,
         category: "Accesorios",
-        image: ExampleImg,
+        image: null,
         description: "Sujeta tu cabello con suavidad. No marca ni parte la hebra."
     },
     {
@@ -46,7 +44,7 @@ export const products = [
         name: "Tinte",
         price: 45000,
         category: "Color",
-        image: ExampleImg,
+        image: null,
         description: "Dale color a tu vida sin dañar tu estructura capilar."
     }
 ];

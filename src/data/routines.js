@@ -1,11 +1,9 @@
-import ExampleImg from "../assets/example.jpg";
-
 export const routines = [
     {
         id: 1,
         title: "Cronograma Capilar: ¿Qué es?",
         category: "Conceptos Básicos",
-        image: ExampleImg,
+        image: null,
         excerpt: "Aprende a diferenciar qué necesita tu cabello: Hidratación, Nutrición o Reconstrucción.",
         content: [
             "El Cronograma Capilar es una rutina de cuidado organizada en 3 etapas principales:",
@@ -19,7 +17,7 @@ export const routines = [
         id: 2,
         title: "Definición Rápida para Hombres",
         category: "Rutinas Hombres",
-        image: ExampleImg,
+        image: null,
         excerpt: "5 pasos sencillos para resaltar la textura de tu cabello corto.",
         content: [
             "Tener el cabello corto no significa que no necesite cuidado:",
@@ -34,7 +32,7 @@ export const routines = [
         id: 3,
         title: "Dormir con Rizos: El método Piña",
         category: "Cuidado Diario",
-        image: ExampleImg,
+        image: null,
         excerpt: "¿Amaneces con frizz? Descubre cómo proteger tu definición al dormir.",
         content: [
             "Para evitar despertar con el cabello aplastado o lleno de frizz:",
@@ -47,7 +45,7 @@ export const routines = [
         id: 4,
         title: "Refrescar Rizos (Day After)",
         category: "Tips",
-        image: ExampleImg,
+        image: null,
         excerpt: "No necesitas lavar tu cabello todos los días para que se vea bien.",
         content: [
             "Si tus rizos amanecieron un poco desordenados pero no sucios:",

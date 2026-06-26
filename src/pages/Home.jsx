@@ -1,6 +1,6 @@
-import Hero from "../components/Hero";
-import BrandStory from "../components/BrandStory";
-import CategorySplit from "../components/CategorySplit";
+import Hero from "../components/home/Hero";
+import BrandStory from "../components/home/BrandStory";
+import CategorySplit from "../components/home/CategorySplit";
 
 const Home = () => {
   return (

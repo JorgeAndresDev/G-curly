@@ -1,0 +1,9 @@
+{
+  "name": "animations-motion",
+  "description": "Reusable Framer Motion components and hooks for JDev projects.",
+  "author": "JDev",
+  "version": "0.1.0",
+  "peerDependencies": {
+    "framer-motion": "^12.42.0"
+  }
+}
