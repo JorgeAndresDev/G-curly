@@ -1,20 +1,19 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,jsx}"],
   theme: {
     extend: {
       colors: {
-        primary: "#386641",
-        secondary: "#AA8F59",
-        terracotta: "#A65640",
-        accent: "#F8F8F8",
-        dark: "#26482e",
-        "deep-green": "#0A150A",
+        arena: "#F4E9D8",
+        cacao: "#21140B",
+        caramelo: "#C9742F",
+        mango: "#E9A13B",
+        moca: "#6B4527",
+        crema: "#FFF9EF",
       },
       fontFamily: {
-        sans: ["Montserrat", "sans-serif"],
-        serif: ["Playfair Display", "serif"],
+        display: ["'Bricolage Grotesque'", "sans-serif"],
+        sans: ["'Instrument Sans'", "sans-serif"],
       },
     },
   },

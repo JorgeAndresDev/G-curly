@@ -1,163 +1,104 @@
 import { Link } from "react-router-dom";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { BRAND } from "../../lib/constants";
-import { useRef, useMemo } from "react";
-import { useTheme } from "../../hooks";
+import Coil from "../ui/Coil";
+
+const TEXTURES = ["Onda", "Rizo", "Crespo", "Afro"];
 
 const Hero = () => {
-  const { theme } = useTheme();
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
-
-  const textY = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const scrollOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
-
-  const gridSvg = useMemo(() => {
-    const strokeColor = theme === "light" ? "rgba(0,0,0,0.05)" : "rgba(255,255,255,0.03)";
-    return `data:image/svg+xml;base64,${btoa(`<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 0 10 L 40 10 M 10 0 L 10 40 M 0 20 L 40 20 M 20 0 L 20 40 M 0 30 L 40 30 M 30 0 L 30 40" fill="none" stroke="${strokeColor}" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#grid)"/></svg>`)}`;
-  }, [theme]);
+  const reduce = useReducedMotion();
 
   return (
-    <section ref={containerRef} className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-accent dark:bg-deep-green">
-      {/* Dynamic Background with Parallax */}
-      <motion.div 
-        style={{ y: backgroundY }}
-        className={`absolute inset-0 transition-colors duration-1000 z-0 ${
-          theme === "light" 
-            ? "bg-gradient-to-br from-[#E1EAE1] via-[#F8FAF8] to-[#F5EBE6]" 
-            : "bg-gradient-to-br from-deep-green via-primary to-terracotta"
-        }`} 
+    <section className="relative w-full min-h-screen flex items-center overflow-hidden bg-arena">
+      {/* Static warm washes — no scattered motion */}
+      <div
+        aria-hidden="true"
+        className="absolute -top-40 -right-40 w-[42rem] h-[42rem] rounded-full bg-mango/25 blur-3xl"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute -bottom-52 -left-52 w-[40rem] h-[40rem] rounded-full bg-caramelo/20 blur-3xl"
       />
 
-      <motion.div
-        className="absolute inset-0 z-[1] pointer-events-none"
-        style={{ 
-          opacity: 0.2,
-          backgroundImage: theme === "light"
-            ? "radial-gradient(circle at 20% 50%, rgba(56,102,65,0.08) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(170,143,89,0.08) 0%, transparent 50%)"
-            : "radial-gradient(circle at 20% 50%, rgba(255,255,255,0.2) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(170,143,89,0.3) 0%, transparent 50%)",
-        }}
-      />
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-10 py-24 md:py-16 grid lg:grid-cols-[1.15fr_1fr] items-center gap-14 lg:gap-8">
+        <motion.div
+          initial={reduce ? false : { opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <h1 className="font-display font-extrabold text-cacao tracking-tight leading-[0.92] text-[17vw] sm:text-7xl lg:text-6xl xl:text-[5.5rem]">
+            Disfruta
+            <span className="block text-caramelo">tus texturas</span>
+          </h1>
 
-      <div 
-        className="absolute inset-0 opacity-40 z-[2] pointer-events-none transition-all duration-700" 
-        style={{ backgroundImage: `url('${gridSvg}')` }}
-      />
+          <p className="mt-7 max-w-md text-lg text-moca leading-relaxed">
+            Especialistas en el cuidado y amor por el cabello crespo, rizado y
+            afro. Productos, salón y rutinas para que ames tu textura tal como
+            es.
+          </p>
 
-      {/* Floating Elements - Optimized for Cross-Browser */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none select-none z-[3]">
-        {[...Array(3)].map((_, i) => (
-          <motion.div
-            key={i}
-            className={`absolute rounded-full blur-3xl will-change-transform transform-gpu ${
-              theme === "light" ? "bg-primary/10" : "bg-white/10"
-            }`}
-            animate={{
-              y: [0, -40, 0],
-              x: [0, 20, 0],
-            }}
-            transition={{
-              duration: 12 + i * 4,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            style={{
-              width: 350 + i * 100,
-              height: 350 + i * 100,
-              left: `${i * 30}%`,
-              top: `${(i % 2) * 45}%`,
-              opacity: 0.08,
-            }}
-          />
-        ))}
-      </div>
-
-      <motion.div 
-        style={{ y: textY, opacity: scrollOpacity }}
-        className="relative z-10 text-center max-w-5xl px-6 py-12"
-      >
-        <div className="space-y-6 md:space-y-8 mb-12 md:mb-16">
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className={`font-black tracking-[0.5em] uppercase text-[10px] md:text-xs ${
-              theme === "light" ? "text-primary/60" : "text-secondary/80"
-            }`}
-          >
-            Bienvenidos a {BRAND.name}
-          </motion.p>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="perspective-1000"
-          >
-            <h1 
-              className={`text-6xl sm:text-7xl md:text-[10rem] font-serif font-bold leading-[0.95] tracking-tighter transition-colors duration-700 ${
-                theme === "light" ? "text-primary" : "text-white"
-              }`}
-              style={{
-                textShadow: theme === "light" ? "none" : "0 20px 40px rgba(0,0,0,0.3)"
-              }}
+          <div className="mt-10 flex flex-wrap items-center gap-7">
+            <Link
+              to="/tienda"
+              className="inline-flex items-center gap-2 rounded-full bg-caramelo px-8 py-4 font-bold text-crema shadow-[0_16px_32px_-14px_rgba(201,116,47,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-mango focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-caramelo focus-visible:ring-offset-2 focus-visible:ring-offset-arena active:scale-[0.98]"
             >
-              {BRAND.tagline}
-            </h1>
-          </motion.div>
+              Ver la tienda
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                />
+              </svg>
+            </Link>
+            <Link
+              to="/salon"
+              className="group inline-flex items-center gap-2 font-bold text-moca underline decoration-caramelo/50 decoration-2 underline-offset-8 transition-colors hover:text-caramelo focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-caramelo rounded-sm"
+            >
+              Agendar cita en el salón
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
+            </Link>
+          </div>
 
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className={`text-lg md:text-2xl font-light max-w-2xl mx-auto leading-relaxed italic ${
-              theme === "light" ? "text-primary/60" : "text-white/70"
-            }`}
-          >
-            {BRAND.description}
-          </motion.p>
-        </div>
+          <div className="mt-16 max-w-md" aria-hidden="true">
+            <div className="flex justify-between text-[10px] font-bold uppercase tracking-[0.25em] text-moca/70">
+              {TEXTURES.map((t) => (
+                <span key={t}>{t}</span>
+              ))}
+            </div>
+            <div className="mt-2.5 h-3 rounded-full bg-gradient-to-r from-mango via-caramelo to-cacao" />
+            <p className="mt-2 text-xs text-moca/70">
+              Cuidamos cada tipo de rizo, de la onda suave al afro apretado.
+            </p>
+          </div>
+        </motion.div>
 
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
+        <motion.div
+          initial={reduce ? false : { opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row gap-8 justify-center items-center"
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="relative hidden lg:flex items-center justify-center"
         >
-          <Link
-            to="/tienda"
-            className={`group px-12 py-5 backdrop-blur-xl rounded-full font-bold text-xs tracking-widest uppercase transition-all duration-500 shadow-2xl border transform hover:-translate-y-1 ${
-              theme === "light" 
-                ? "bg-primary/5 text-primary border-primary/20 hover:bg-primary hover:text-white" 
-                : "bg-white/5 text-white border-white/20 hover:bg-white hover:text-primary"
-            }`}
-          >
-            <span className="relative z-10">Ver Productos</span>
-          </Link>
-          <Link
-            to="/salon"
-            className="group px-12 py-5 bg-secondary text-white rounded-full font-bold text-xs tracking-widest uppercase hover:bg-terracotta transition-all duration-500 shadow-2xl transform hover:-translate-y-1 hover:scale-105 active:scale-95"
-          >
-            <span className="relative z-10">Agendar Cita</span>
-          </Link>
+          <Coil
+            className="w-full max-w-[34rem] text-caramelo"
+            strokeWidth={1.75}
+            animate
+            duration={2}
+          />
+          <div className="absolute -bottom-2 left-8 rounded-full bg-crema px-5 py-2 text-sm font-bold text-cacao shadow-[0_10px_30px_-12px_rgba(33,20,11,0.35)]">
+            {BRAND.name}
+          </div>
         </motion.div>
-
-        <motion.div 
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-          className={`absolute bottom-0 left-1/2 -translate-x-1/2 opacity-30 ${
-            theme === "light" ? "text-primary" : "text-white"
-          }`}
-        >
-          <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 };

@@ -7,10 +7,10 @@ const FilterBar = ({ categories, selectedCategory, onSelectCategory }) => {
           <button
             key={category}
             onClick={() => onSelectCategory(category)}
-            className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 border-2 ${
+            className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 border-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-caramelo focus-visible:ring-offset-2 ${
               isActive
-                ? "bg-primary border-primary text-white shadow-lg dark:bg-secondary dark:border-secondary scale-105"
-                : "bg-transparent border-gray-200 text-gray-500 hover:border-primary hover:text-primary dark:border-gray-600 dark:text-gray-400 dark:hover:border-secondary dark:hover:text-secondary"
+                ? "bg-caramelo border-caramelo text-crema shadow-lg scale-105"
+                : "bg-transparent border-cacao/20 text-moca hover:border-caramelo hover:text-caramelo"
             }`}
           >
             {category}

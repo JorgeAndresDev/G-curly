@@ -1,19 +1,22 @@
 import { routines } from "../data/routines";
 import RoutineCard from "../components/routines/RoutineCard";
 import { WHATSAPP_MESSAGE } from "../lib/constants";
+import Coil from "../components/ui/Coil";
 
 const Routines = () => {
   return (
-    <div className="min-h-screen bg-accent/30 dark:bg-dark py-16 md:py-24 px-6 transition-colors duration-300">
+    <div className="min-h-screen bg-arena py-16 md:py-24 px-6">
       <header className="text-center mb-16 max-w-3xl mx-auto">
-        <span className="text-secondary font-bold tracking-widest uppercase text-sm block mb-4">
+        <span className="inline-flex items-center gap-3 text-caramelo font-bold tracking-widest uppercase text-sm block mb-4">
+          <Coil className="w-6 h-6" strokeWidth={1.5} />
           Blog Educativo
         </span>
-        <h1 className="text-4xl md:text-5xl font-serif font-bold text-primary dark:text-secondary mb-6">
+        <h1 className="text-4xl md:text-5xl font-display font-extrabold text-cacao tracking-tight mb-6">
           Aprende a Cuidar tu Corona
         </h1>
-        <p className="text-gray-500 dark:text-gray-400 text-lg font-light leading-relaxed">
-          Consejos, trucos y guías paso a paso para que te conviertas en experta(o) de tu propio cabello.
+        <p className="text-moca text-lg leading-relaxed">
+          Consejos, trucos y guías paso a paso para que te conviertas en
+          experta(o) de tu propio cabello.
         </p>
       </header>
 
@@ -24,11 +27,11 @@ const Routines = () => {
       </div>
 
       <div className="mt-20 text-center">
-        <p className="text-gray-500 dark:text-gray-400 italic">
+        <p className="text-moca italic">
           ¿Tienes dudas sobre tu rutina?{" "}
           <a
             href={WHATSAPP_MESSAGE("Hola, tengo dudas sobre mi rutina capilar")}
-            className="text-secondary font-semibold underline hover:text-terracotta transition-colors"
+            className="text-caramelo font-semibold underline hover:text-mango transition-colors"
           >
             Escríbenos al WhatsApp
           </a>

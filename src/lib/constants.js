@@ -12,12 +12,12 @@ export const BRAND = {
 };
 
 export const GRADIENT_COLORS = {
-  primary: "#386641",
-  secondary: "#AA8F59",
-  terracotta: "#A65640",
-  dark: "#26482e",
-  deepGreen: "#0A150A",
-  accent: "#F8F8F8",
+  arena: "#F4E9D8",
+  cacao: "#21140B",
+  caramelo: "#C9742F",
+  mango: "#E9A13B",
+  moca: "#6B4527",
+  crema: "#FFF9EF",
 };
 
 export const WHATSAPP_MESSAGE = (text) => {
